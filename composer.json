@@ -2,7 +2,7 @@
   "name": "adrianjean/craft-formie-mautic",
   "description": "CraftCMS Formie integration for the Mautic email marketing platform.",
   "type": "library",
-  "license": "CC BY-NC-SA 4.0",
+  "license": "CC-BY-NC-SA-4.0",
   "authors": [
     {
       "name": "Adrian Jean",
