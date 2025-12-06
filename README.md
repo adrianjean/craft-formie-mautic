@@ -85,7 +85,7 @@ These are created under:
 
 **Mautic → Settings → Configuration → API Credentials**
 
-Environment variables are supported:
+Example environment variables you can use — but you may use your own as well:
 
 ```
 $MAUTIC_BASE_URL
