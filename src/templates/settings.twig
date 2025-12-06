@@ -1,0 +1,45 @@
+{% import '_includes/forms' as forms %}
+
+{{ forms.autosuggestField({
+    label: 'Base URL',
+    instructions: 'This should be your Mautic instance URL (e.g., https://mautic.website.com). You can use environment variables like $MAUTIC_BASE_URL',
+    id: 'baseUrl',
+    name: 'baseUrl',
+    value: integration.baseUrl ?? '',
+    required: true,
+    placeholder: 'https://mautic.website.com',
+    suggestEnvVars: true,
+}) }}
+
+<div class="fui-settings-block">
+    <h2>Mautic API Credentials</h2>
+    <p>To generate your Mautic API credentials:</p>
+    <ol>
+    <li>In Mautic, go to [Gear Icon] → Configuration → API Credentials → API enabled and turn it ON. </li>
+    <li>Next go to [Gear Icon] → Configuration → API Credentials → Click the "New" button.</li>
+    <li>Select OAuth2 as the Authorization Method.</li>
+    <li>Set the "Redirect URI" to the website you have installed this integration on eg. https://yoursite.com</li>
+    <li>Give it a name (can be anything) then hit "Save & Close".</li>
+    <li>Copy the "Public Key" and "Secret Key" into the fields below. OR save them as .env variables.</li>
+    </ol>
+</div>
+
+{{ forms.autosuggestField({
+    label: 'Public Key',
+    instructions: 'You can use environment variables like $MAUTIC_PUBLIC_KEY',
+    id: 'publicKey',
+    name: 'publicKey',
+    value: integration.publicKey ?? '',
+    required: true,
+    suggestEnvVars: true,
+}) }}
+
+{{ forms.autosuggestField({
+    label: 'Private Key',
+    instructions: 'You can use environment variables like $MAUTIC_PRIVATE_KEY',
+    id: 'privateKey',
+    name: 'privateKey',
+    value: integration.privateKey ?? '',
+    required: true,
+    suggestEnvVars: true,
+}) }}

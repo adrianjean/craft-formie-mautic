@@ -1,0 +1,69 @@
+{% import '_includes/forms' as forms %}
+{% import 'verbb-base/_macros' as macros %}
+
+{% set handle = integration.handle %}
+{% set displayName = integration.displayName() %}
+{% set formSettings = integration.getFormSettings().getSettings() %}
+{% set listId = form.settings.integrations[handle].listId ?? '' %}
+
+<integration-form-settings handle="{{ handle }}" :form-settings="{{ formSettings | json_encode }}" source="{{ listId }}">
+    <template v-slot="{ get, isEmpty, input, settings, sourceId, loading, refresh, error, errorMessage, getSourceFields }">
+        
+        <div class="field">
+            <div class="heading">
+                <label id="sourceId-label" for="sourceId" class="required">{{ 'Mautic Segment' | t('formie') }}</label>
+                <div class="instructions">
+                    <p>{{ 'Select which Mautic segment to add contacts to when this form is submitted.' | t('formie') }}</p>
+                </div>
+            </div>
+
+            <div class="input ltr">
+                <div class="select">
+                    <select :value="sourceId" @input="input('sourceId', $event.target.value)" name="listId" required>
+                        <option value="">{{ 'Select a segment' | t('formie') }}</option>
+                        <option v-for="(option, index) in get(settings, 'lists')" :key="index" :value="option.id">${ option.name }</option>
+                    </select>
+                </div>
+                <button class="btn fui-btn-transparent" :class="{ 'fui-loading fui-loading-sm': loading }" data-icon="refresh" @click.prevent="refresh" title="{{ 'Refresh segments and fields' | t('formie') }}"></button>
+            </div>
+
+            <ul v-if="!isEmpty(get(form, 'settings.integrations.{{ handle }}.errors.listId'))" class="errors" v-cloak>
+                <li v-for="(error, index) in get(form, 'settings.integrations.{{ handle }}.errors.listId')" :key="index">
+                    ${ error }
+                </li>
+            </ul>
+        </div>
+
+        <div v-if="error" class="error" style="margin-top: 10px;" v-cloak>
+            <span data-icon="alert"></span>
+            <span v-html="errorMessage"></span>
+        </div>
+
+        <hr>
+
+        {{ forms.textField({
+            label: 'Opt-in Field Handle - Must be an "Agree" field (Optional)'|t('formie'),
+            instructions: 'Enter the handle of an **Agree** field that must be checked for the contact to be sent to Mautic. **Leave empty to always send this integration.**'|t('formie'),
+            id: 'optInField',
+            name: 'optInField',
+            value: form.settings.integrations[handle].optInField ?? '',
+            placeholder: 'marketingOptIn',
+        }) }}
+
+        <integration-field-mapping
+            label="{{ 'Field Mapping' | t('formie') }}"
+            instructions="{{ 'Choose how your form fields should map to Mautic contact fields.' | t('formie') }}"
+            id="field-mapping"
+            name-label="{{ displayName }}"
+            name="fieldMapping"
+            :value="get(form, 'settings.integrations.{{ handle }}.fieldMapping')"
+            :rows="get(settings, 'fields')"
+        ></integration-field-mapping>
+
+        <ul v-if="!isEmpty(get(form, 'settings.integrations.{{ handle }}.errors.fieldMapping'))" class="errors" v-cloak>
+            <li v-for="(error, index) in get(form, 'settings.integrations.{{ handle }}.errors.fieldMapping')" :key="index">
+                ${ error }
+            </li>
+        </ul>
+    </template>
+</integration-form-settings>
