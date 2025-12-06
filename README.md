@@ -1,15 +1,13 @@
-# 📮 Formie-Mautic
-*A CraftCMS Formie Integration for the Mautic Email Marketing Platform*  
+# CraftCMS Formie Integration for Mautic
+*A CraftCMS Formie Integration module for the Mautic Email Marketing Platform*  
 **Tested with Mautic 6.x and 7.x**
 
-## 🚀 Overview
+## Overview
 
-**Formie-Mautic** is a CraftCMS module that adds a native **Mautic** integration to **Formie** (Craft’s advanced form builder).  
+**CraftCMS Formie Integration for Mautic** is a CraftCMS module that adds a native **Mautic** integration to **[Verbb Formie](https://verbb.io/craft-plugins/formie/features)**. 
 It allows Formie form submissions to automatically create or update contacts in Mautic, map custom fields, apply tags/segments, and handle opt-in consent.
 
-This module is lightweight, easy to configure, and works seamlessly with modern CraftCMS + Formie installations.
-
-## 🧰 Requirements
+## Requirements
 
 | System     | Version       |
 |------------|----------------|
@@ -18,20 +16,20 @@ This module is lightweight, easy to configure, and works seamlessly with modern 
 | Mautic     | 6.x or 7.x API |
 | PHP        | 8.1+          |
 
-## 📦 Installation
+## Installation
 
 At this time the module is distributed via **GitHub only**, but can be installed with Composer using the repository URL.
 
 ### 1. Add the repository to your composer.json
 
 ```bash
-composer config repositories.formie-mautic vcs https://github.com/YOUR-USERNAME/formie-mautic
+composer config repositories.formie-mautic vcs https://github.com/adrianjean/formie-mautic
 ```
 
 Then require it:
 
 ```bash
-composer require your-namespace/formie-mautic
+composer require adrianjean/formie-mautic
 ```
 
 ### 2. Enable the Module in CraftCMS
@@ -46,6 +44,26 @@ Add to `config/app.php`:
 ],
 'bootstrap' => ['formie-mautic'],
 ```
+
+### 3. Add Composer Autoload Entry
+
+Add this module to your project’s composer.json. You may already have an entry, just add it as another entry:
+
+```json
+"autoload": {
+    "psr-4": {
+        "modules\\": "modules/",
+        "modules\\formiemautic\\": "modules/formie-mautic/src/"
+    }
+}
+```
+
+Then run:
+
+```bash
+composer dump-autoload
+```
+
 
 ## 🔧 Configuration
 
