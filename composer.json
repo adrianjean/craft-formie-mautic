@@ -18,5 +18,15 @@
     "psr-4": {
       "modules\\formiemautic\\": "src/"
     }
-  }
+  },
+  "keywords": [
+    "craftcms", "formie", "mautic", "integration", "module", "email-marketing"
+  ],
+  "homepage": "https://github.com/adrianjean/craft-formie-mautic",
+  "support": {
+    "issues": "https://github.com/adrianjean/craft-formie-mautic/issues",
+    "source": "https://github.com/adrianjean/craft-formie-mautic"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
 }
