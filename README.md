@@ -1,6 +1,7 @@
 # CraftCMS Formie Integration for Mautic
-*A CraftCMS Formie Integration module for the Mautic Email Marketing Platform*  
-**Tested with Mautic 6.x and 7.x**
+A CraftCMS Formie Integration module for the Mautic Email Marketing Platform. Tested with **Mautic 6.x and 7.x** 
+
+PRs and suggestions are welcome!
 
 ## Overview
 
@@ -15,6 +16,11 @@ It allows Formie form submissions to automatically create or update contacts in 
 | Formie     | 3.x           |
 | Mautic     | 6.x or 7.x API |
 | PHP        | 8.1+          |
+
+
+## Mautic Setup
+
+Ideally you have a Segment created with a Campaign that can ingest the contact and process it. If not, the contact will simply be added to Mautic. 
 
 ## Installation
 
@@ -65,7 +71,7 @@ composer dump-autoload
 ```
 
 
-## 🔧 Configuration
+## Configuration
 
 In **Formie → Settings → Integrations**, add a new **Mautic Integration**.
 
@@ -77,7 +83,7 @@ Credentials required:
 
 These are created under:
 
-**Mautic → Settings → API Credentials**
+**Mautic → Settings → Configuration → API Credentials**
 
 Environment variables are supported:
 
@@ -87,7 +93,7 @@ $MAUTIC_PUBLIC_KEY
 $MAUTIC_PRIVATE_KEY
 ```
 
-## 🎛 Features
+## Features
 
 - ✔ Map Formie fields to Mautic custom fields  
 - ✔ Opt-in / consent checkbox  
@@ -95,7 +101,7 @@ $MAUTIC_PRIVATE_KEY
 - ✔ Works with Mautic 6.x and 7.x API  
 - ✔ Simple configuration through Formie UI  
 
-## 🧪 Usage
+## Usage
 
 1. Create a Formie form  
 2. Add your fields + optional opt-in consent  
@@ -105,18 +111,7 @@ $MAUTIC_PRIVATE_KEY
 6. Choose a Mautic Segment to assign contacts to  
 7. Submit your form and verify contact creation/update in Mautic  
 
-## 🐞 Known Issues
+## Known Issues
 
 No known issues at this time.
 
-## 🤝 Contributing
-
-PRs and suggestions are welcome!
-
-## 📄 License
-
-MIT License
-
-## 🙌 Credits
-
-Created by **Adrian Jean (Spark* Advocacy)**  
